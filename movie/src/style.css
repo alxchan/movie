@@ -1,0 +1,155 @@
+/* img:hover{
+    position: relative;
+    left: 0%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transition: 2s;
+    width: 300px;
+    height: 400px;
+} */
+
+/* #blur{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+} */
+
+*{
+  font-family: 'Kanit', sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+iframe{
+  width: 500px;
+  aspect-ratio: 16/9;
+}
+
+body{
+  background-color: rgb(4,10,24);
+  margin: 0;
+  display:flex;
+  flex-direction: column;
+}
+
+.title{
+  font-size: 50px;
+  margin: 0;
+  font-weight: bold;
+  align-self:center;
+  justify-self: center;
+
+}
+
+p{
+  font-size: 20px;
+}
+
+div{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title{
+  display: inline-block;
+}
+
+img{
+  height: 300px;
+}
+.get{
+  padding: 1fr 1rem;
+  border-radius: 10%;
+}
+
+.getButton{
+  height: 30px;
+  background-color: rgb(4,10,24);
+}
+
+.getButton:hover{
+box-shadow: 0px 1px 5px rgb(255 255 255);;
+}
+
+.submit{
+background-color: rgb(4,10,24);
+}
+
+.submit:hover{
+box-shadow: 0px 1px 5px rgb(255 255 255);;
+}
+
+#getform{
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 20px solid rgb(255,255,255,0.1);
+}
+
+h1{
+  font-size: 50px;
+}
+
+.extraDiv{
+  box-shadow: 0px 0px 20px 5px black;
+  align-self: center;
+  justify-self: center;
+}
+
+.video{
+  align-self: center;
+  justify-self: center;
+  font-size: 50px;
+}
+
+.vids{
+  padding: 1rem 2rem;
+  border-top: 5px solid rgb(255,255,255,0.1);
+  border-bottom: 5px solid rgb(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .movieContent{
+  padding: 1rem 2rem;
+  background-color: rgba(43, 43, 43, 0.5);
+  border-top: 5px solid rgb(255,255,255,0.1);
+  border-bottom: 5px solid rgb(255,255,255,0.1);
+} */
+
+.search{
+background-color: rgba(43, 43, 43, 0.5);
+border:none;
+border-radius: 5%;
+}
+
+.search:focus{
+box-shadow:  0px 0px 20px 5px black;
+}
+
+.selection{
+background-color: rgba(43, 43, 43, 0.5);
+border-radius: 5%;
+}
+
+.selection:focus{
+box-shadow:  0px 0px 20px 5px black;
+}
+
+.movieInfo{
+  padding: 1rem 2rem;
+  background-color: rgba(43, 43, 43, 0.5);
+  border-top: 5px solid rgb(255,255,255,0.1);
+  border-bottom: 5px solid rgb(255,255,255,0.1);
+}
+
+.select{
+  background-color: rgba(43, 43, 43, 0.5);
+  border-top: 5px solid rgb(255,255,255,0.1);
+  border-bottom: 5px solid rgb(255,255,255,0.1);
+  border-radius: 5%;
+}
