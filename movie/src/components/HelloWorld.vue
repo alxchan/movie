@@ -1,5 +1,5 @@
       <template>
-        <div id="getform">
+        <!-- <div id="getform">
           <h1>Welcome to a Movie Searcher!</h1>
         <div>
           <select class="select" v-model = "select" @change = "">
@@ -19,7 +19,22 @@
             <input type="submit" value="GET" class="getButton"/>
           </form>
           </div>
-        </div>
+        </div> -->
+<h1>Welcome to a Movie Searcher!</h1>
+<div id = "getform">
+  <form class = "form" @submit.prevent = "findMovie()">
+    <input type="search" class = "search" placeholder = "Search Movies Here!" ref = "search">
+    <input type ="submit" class = "submit"/>
+  </form>
+    <form class = "get" @submit.prevent = "getMovie()">
+        <input type = "submit" value = "GET" class = "getButton"/>
+    </form>
+    <select class="select" ref = "select" @change = "">
+      <option  v-for = "ids in values" :value = "ids.id">{{ids.title}}</option>
+    </select>
+</div>
+
+
       <div class = "movieData" v-if = "loaded">
         <h2 class = "title" v-html = title></h2>
           <div class = "extraDiv" ref = "extraDiv">
@@ -39,6 +54,8 @@
 import { ref, defineComponent, VueElement} from 'vue'
 import axios from 'axios';
 const select = ref()
+const search = ref();
+const values = ref([])
 const title = ref(null)
 const img = ref()
 const traileriframe = ref()
@@ -46,9 +63,30 @@ const p = ref()
 const video = ref([])
 const loaded = ref()
 
+let findMovie = function(){
+  let query = this.search.value;
+  this.values = [];
+  let response = axios.get("https://api.themoviedb.org/3/search/movie", {
+    params: {
+      api_key: "dae84c7eae2f2c63d4bdf1e712d56304",
+      query: query,
+    },
+  });
+  response = response.then((moviesData) => {
+    for (let movie of moviesData.data.results) {
+      this.values.push({
+        title: movie.title,
+        id: movie.id,
+      })
+      console.log(values);
+    }
+  });
+}
+
+
 const getMovie = function() {
       let specific = axios.get(
-    `https://api.themoviedb.org/3/movie/${select.value}`,
+    `https://api.themoviedb.org/3/movie/${this.select.value}`,
     {
       params: {
         api_key: "dae84c7eae2f2c63d4bdf1e712d56304",
@@ -84,18 +122,15 @@ const getMovie = function() {
             .at(0).key
         }`;
       }
- 
+      this.title = specificData.data.title
       this.img = `https://image.tmdb.org/t/p/w500${specificData.data.poster_path}`;
-      this.title = `${specificData.data.title}`;
       this.p = `Status: ${specificData.data.status}
       <br> Release Date: ${specificData.data.release_date} -- Popularity: ${specificData.data.popularity}
       <br> Overview: ${specificData.data.overview} <br> Vote Average: ${specificData.data.vote_average}  -- Vote Count ${specificData.data.vote_count}
       <br> Genre: ${g} <br> Production Companies: ${pc}  -- Production Countries: ${prod}
       <br> Runtime: ${specificData.data.runtime} minutes
       <br> Homepage: <a href = ${specificData.data.homepage}>${specificData.data.homepage}</a> `;
-      if (this.video.length != 0){
         this.video = [];
-      }
       for (let i = 0; i < specificData.data.videos.results.length; i++) {
         if (specificData.data.videos.results.at(i).type != "Trailer") {
           this.video.push(`https://www.youtube.com/embed/${specificData.data.videos.results.at(i).key}`);
@@ -197,6 +232,14 @@ p{
   font-size: 20px;
 }
 
+iframe{
+  width: 500px;
+  aspect-ratio: 16/9;
+}
+
+img{
+  height: 281.25px;
+}
 /* .movieInfo{ */
   /* padding: 1rem 2rem;
   background-color: rgba(43, 43, 43, 0.5);
