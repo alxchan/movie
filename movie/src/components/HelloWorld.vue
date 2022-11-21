@@ -2,10 +2,10 @@
 <h1>Welcome to a Movie Searcher!</h1>
 <div id = "getform">
   <form class = "form" @submit.prevent = "findMovie()">
-    <input type="search" class = "search" placeholder = "Search Movies Here!" ref = "search">
+    <input type="text" class = "search" placeholder = "Search Movies Here!" ref = "search">
     <input type ="submit" class = "submit"/>
   </form>
-  <form class = "get" @submit.prevent = "getMovie()">
+  <form @submit.prevent = "getMovie()">
       <input type = "submit" value = "GET" class = "getButton"/>
   </form>
   <select class="select" ref = "select" @change = "">
@@ -150,14 +150,9 @@ div{
 iframe{
     width: 500px;
     aspect-ratio: 16/9;
-  }
-.get{
-  border-radius: 10%;
-  background-color: rgb(4,10,24)
 }
-
 .getButton{
-  height: 30px;
+  height: 27px;
   background-color: rgb(4,10,24);
 }
 
@@ -175,11 +170,12 @@ box-shadow: 0px 1px 5px rgb(255 255 255);;
 }
 
 .submit{
-background-color: rgb(4,10,24);
+  height: 27px;
+  background-color: rgb(4,10,24);
 }
 
 .submit:hover{
-box-shadow: 0px 1px 5px rgb(255 255 255);;
+box-shadow: 0px 1px 5px rgb(255 255 255);
 }
 
 h1{
@@ -234,6 +230,32 @@ img{
   background-color: rgba(43, 43, 43, 0.5);
   border-top: 5px solid rgb(255,255,255,0.1);
   border-bottom: 5px solid rgb(255,255,255,0.1);
+}
+.select{
+height: 27px;
+background-color: rgba(43, 43, 43, 0.5);
+border: none;
+border-radius: 5%;
+}
+
+select:hover{
+  box-shadow: 0px 1px 5px rgb(255 255 255);
+}
+select:focus{
+  outline:none;
+}
+.search{
+  height: 27px;
+  background-color: rgba(43, 43, 43, 0.5);
+  border: none;
+  border-radius: 5%;
+}
+.search:hover{
+  box-shadow: 0px 1px 5px rgb(255 255 255);
+}
+
+.search:focus{
+  outline:none;
 }
 </style>
 
