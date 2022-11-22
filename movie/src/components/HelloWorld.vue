@@ -8,7 +8,7 @@
   <form @submit.prevent = "getMovie()">
       <input type = "submit" value = "GET" class = "getButton"/>
   </form>
-  <select class="select" ref = "select" @change = "">
+  <select class="select" ref = "select">
     <option  v-for = "ids in values" :value = "ids.id">{{ids.title}}</option>
   </select>
 </div>
@@ -18,7 +18,9 @@
         <h2 class = "title" v-html = title></h2>
           <div class = "extraDiv" ref = "extraDiv">
             <img :src = "img"/>
-            <iframe :src = "traileriframe"></iframe>
+            <div v-if = "traileriframe">
+              <iframe :src = "traileriframe"></iframe>
+            </div>
           </div>
           <p class = movieInfo v-html= p></p>
           <h2 class = "video">Videos</h2>
@@ -44,8 +46,9 @@ const video = ref([])
 const loaded = ref()
 
 let findMovie = function(){
-  let query = this.search.value;
-  this.values = [];
+  loaded.value = false
+  let query = search.value.value;
+  values.value = [];
   let response = axios.get("https://api.themoviedb.org/3/search/movie", {
     params: {
       api_key: "dae84c7eae2f2c63d4bdf1e712d56304",
@@ -55,7 +58,7 @@ let findMovie = function(){
 
   response = response.then((moviesData) => {
     for (let movie of moviesData.data.results) {
-      this.values.push({
+      values.value.push({
         title: movie.title,
         id: movie.id,
       })
@@ -67,7 +70,7 @@ let findMovie = function(){
 const getMovie = function() {
 
 let specific = axios.get(
-  `https://api.themoviedb.org/3/movie/${this.select.value}`,{
+  `https://api.themoviedb.org/3/movie/${select.value.value}`,{
     params: {
       api_key: "dae84c7eae2f2c63d4bdf1e712d56304",
       append_to_response: "videos",
@@ -76,7 +79,7 @@ let specific = axios.get(
 )
 
   specific = specific.then((specificData) => {
-    this.loaded = true
+    loaded.value = true
     var g = "";
     for (let i in specificData.data.genres) {
         g += specificData.data.genres[i].name + ", ";
@@ -93,26 +96,30 @@ let specific = axios.get(
       }
   
       if (specificData.data.videos.results.filter((trailer) => trailer.type === "Trailer").length > 0) {
-          this.traileriframe = `https://www.youtube.com/embed/${
+          traileriframe.value = `https://www.youtube.com/embed/${
             specificData.data.videos.results
             .filter((trailer) => trailer.type === "Trailer")
             .at(0).key
         }`;
       }
+      
+      else{
+        traileriframe.value = ``;
+      }
 
-      this.title = specificData.data.title
-      this.img = `https://image.tmdb.org/t/p/w500${specificData.data.poster_path}`;
-      this.p = `Status: ${specificData.data.status}
+      title.value = specificData.data.title
+      img.value = `https://image.tmdb.org/t/p/w500${specificData.data.poster_path}`;
+      p.value = `Status: ${specificData.data.status}
       <br> Release Date: ${specificData.data.release_date} -- Popularity: ${specificData.data.popularity}
       <br> Overview: ${specificData.data.overview} <br> Vote Average: ${specificData.data.vote_average}  -- Vote Count ${specificData.data.vote_count}
       <br> Genre: ${g} <br> Production Companies: ${pc}  -- Production Countries: ${prod}
       <br> Runtime: ${specificData.data.runtime} minutes
       <br> Homepage: <a href = ${specificData.data.homepage}>${specificData.data.homepage}</a> `;
       
-      this.video = [];
+      video.value = [];
       for (let i = 0; i < specificData.data.videos.results.length; i++) {
         if (specificData.data.videos.results.at(i).type != "Trailer") {
-          this.video.push(`https://www.youtube.com/embed/${specificData.data.videos.results.at(i).key}`);
+          video.value.push(`https://www.youtube.com/embed/${specificData.data.videos.results.at(i).key}`);
           }
         } 
       });
