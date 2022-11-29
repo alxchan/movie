@@ -8,12 +8,25 @@ const username = ref("");
 const password = ref("");
 
 let login = () => {
-    router.push("./home")
+    router.push("/")
 }
 
 let register = () => {
     createUserWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    router.push("./home")
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
 };
+
 </script>
 
 <template>
