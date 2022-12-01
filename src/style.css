@@ -1,0 +1,14 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  font-family: 'Kanit', sans-serif;
+  text-decoration: none;
+  user-select: none;
+}
+
+body{
+  background-color: rgb(4,10,24);
+  margin: 0;
+  overflow-x: hidden;
+}
