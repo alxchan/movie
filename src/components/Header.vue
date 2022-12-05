@@ -1,5 +1,8 @@
 <script setup>
 import router from "../router";
+import { userData } from '../store/index.js'
+const store = userData()
+
 let login = () => {
     router.push("./login")
 }

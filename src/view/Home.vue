@@ -9,17 +9,16 @@ import Hero from '../components/Hero.vue'
 </template>
 
 <style>
-
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black; 
-  box-shadow: inset 0 0 5px red; 
+  background: black;
+  box-shadow: inset 0 0 5px red;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 89, 89, 0.411); 
+  background: rgba(255, 89, 89, 0.411);
 }
 </style>

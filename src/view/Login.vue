@@ -1,20 +1,29 @@
 <script setup>
+import { walkIdentifiers } from "@vue/compiler-core";
 import { ref } from "vue"
 //Firebase sign-in
 // import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 // import { auth } from "../firebase/index.js"
 import router from "../router";
-
+import { userData } from "../store/index.js"
 const email = ref("");
 const username = ref("");
 const password = ref("");
-
-let login = () =>{
-    if(username.value == "tmdb" && password.value == "movies"){
+const store = userData()
+let login = () => {
+    if (username.value == "tmdb" && password.value == "movies") {
         alert("correct login");
+        router.push("./shop");
+        store.login = true;
     }
 }
-    
+
+if(store.login){
+    setTimeout(() => {
+        router.push("./shop")
+    }, 10)  
+}
+
 //Firebase sign-in
 // let login = () => {
 //     signInWithEmailAndPassword(auth, email.value, password.value)
@@ -43,20 +52,25 @@ let login = () =>{
                     <input type="submit" value="Login" class="submitLog" />
                 </form>
                 <p id="login">Don't Have an Account?</p>
-                <div class = "break"></div>
+                <div class="break"></div>
                 <p id="login" @click="register()">Register</p>
-                <div class = "break"></div>
+                <div class="break"></div>
             </div>
         </div>
     </body>
 </template>
 
 <style scoped>
-
-.break{
-  flex-basis: 100%;
-  width: 0;
+button {
+    width: 100vw;
+    height: 100vh;
 }
+
+.break {
+    flex-basis: 100%;
+    width: 0;
+}
+
 body {
     background-color: rgb(4, 10, 24);
     margin: 0;
@@ -95,7 +109,7 @@ body {
 }
 
 input:focus::placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .login-input {
