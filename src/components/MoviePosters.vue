@@ -8,13 +8,15 @@ import Modal from '../components/Modal.vue'
 const posters = ref()
 const store = userData()
 store.getMovies()
-
+let shoppingCart = () =>{
+    router.push("./cart")
+}
 let loadModal = (index) => {
-      store.modal = true;
-      store.load(index);
-      store.specificMovie(store.id);
-      posters.className = "modalOpen"
-      console.log(posters);
+    store.modal = true;
+    store.load(index);
+    store.specificMovie(store.id);
+    posters.className = "modalOpen"
+    console.log(posters);
 }
 
 
@@ -32,16 +34,28 @@ let loadModal = (index) => {
 </script>
 
 <template>
-    <Modal v-if = 'store.modal'/>
-    <div ref = "posters"  class="modal" >
-        <img v-for="(movieData, index) in store.data" :src="movieData.Posters" :value="movieData.Title"
-            @click="loadModal(index)" />
+    <Modal v-if='store.modal' />
+    <div>
+        <button class="cart" @click = "shoppingCart()"></button>
+        <div ref="posters" class="modal">
+            <img v-for="(movieData, index) in store.data" :src="movieData.Posters" :value="movieData.Title"
+                @click="loadModal(index)" />
+        </div>
     </div>
 </template>
 
 <style scoped>
+.cart {
+    background-image: url(../cart-shopping-solid.svg);
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    background-color: gainsboro;
+    left: 94%;
+    bottom: 1%;
+}
 
-.modalOpen{
+.modalOpen {
     overflow: hidden;
 }
 

@@ -9,7 +9,7 @@ import MoviePosters from "../components/MoviePosters.vue"
 </script>
 
 <template>
-<Header></Header>
+<Header class = "adfasf"></Header>
 <MoviePosters></MoviePosters>
 </template>
 

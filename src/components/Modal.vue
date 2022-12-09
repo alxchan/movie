@@ -10,6 +10,7 @@ let closeModal = () => {
 </script>
 
 <template>
+  <div class = "background" @click.self = "closeModal()">
     <div class="modal">
       <img :src=store.modalData[0].Posters />
       <div id="flex-styling">
@@ -21,13 +22,15 @@ let closeModal = () => {
         <button class="button" @click="store.purchase()">Purchase</button>
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
 
-.ModalOpen { overflow: hidden; }
-.is-hidden { display: none; }
-.is-visuallyHidden { opacity: 0; }
+.background{
+  height: 100vh;
+  width: 100vw;
+}
 
 #close {
   position: relative;

@@ -43,7 +43,7 @@ pinia.use((context) => {
     serialize: JSON.stringify,
     deserialize: JSON.parse,
   };
-  if (window.localStorage.getItem(storeId)) {
+  if (window.localStorage.getItem(storeId) && window.localStorage.getItem("shop")) {
     context.store.$patch(
       (context.store.login = serializer.deserialize(
         window.localStorage.getItem(storeId)
@@ -53,7 +53,7 @@ pinia.use((context) => {
     )
     )
   }
-  else if (window.localStorage.getItem("key")){
+  else if (window.localStorage.getItem("shop")){
       window.localStorage.setItem("shop",[])
   }
 
