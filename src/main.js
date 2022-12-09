@@ -53,6 +53,13 @@ pinia.use((context) => {
     )
     )
   }
+  else if (window.localStorage.getItem("key")){
+      window.localStorage.setItem("shop",[])
+  }
+
+  else if (window.localStorage.getItem(storeId)){
+    window.localStorage.setItem(storeId,false)
+  }
 
   context.store.$subscribe((mutation, state) => {
     window.localStorage.setItem("shop",serializer.serialize(state.shop))

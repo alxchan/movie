@@ -14,11 +14,12 @@ let home = () => {
 
 <template>
     <div class="header">
+        <img src = "../image.png" style = "width: 5%;"/>
         <h1>TheBest Movie Co.</h1>
         <div class="list">
-            <li @click = "home()">Home</li>
-            <li @click = "login()">Login</li>
-            <li>Contact</li>
+            <button @click = "home()">Home</button>
+            <button @click = "login()">Login</button>
+            <button>Contact</button>
         </div>
     </div>
 </template>
@@ -35,14 +36,16 @@ let home = () => {
 
 h1 {
     text-align: left;
-    flex-basis: 80%;
+    flex-basis: 70%;
     margin-left: 50px;
 }
 
-li {
+button {
     list-style: none;
     padding: 20px;
     width: 95px;
+    background-color: transparent;
+    border: none;
     user-select: none;
 }
 
