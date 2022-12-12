@@ -3,6 +3,11 @@ import router from "../router";
 import { userData } from '../store/index.js'
 const store = userData()
 
+let logout = () => {
+    store.login = false;
+    router.push("./");
+}
+
 let login = () => {
     router.push("./login")
 }
@@ -10,16 +15,24 @@ let login = () => {
 let home = () => {
     router.push("./")
 }
+
+let shop = () => {
+    if (store.login) {
+        router.push("./shop")
+    }
+}
 </script>
 
 <template>
     <div class="header">
-        <img src = "../image.png" style = "width: 5%;"/>
+        <img src="../image.png" style="width: 5%;" />
         <h1>TheBest Movie Co.</h1>
         <div class="list">
-            <button @click = "home()">Home</button>
-            <button @click = "login()">Login</button>
+            <button @click="home()">Home</button>
+            <button @click="login()" v-if="!store.login">Login</button>
+            <button @click="shop()" v-if="store.login">Shop</button>
             <button>Contact</button>
+            <button @click="logout()" v-if="store.login">Logout</button>
         </div>
     </div>
 </template>
@@ -28,9 +41,9 @@ let home = () => {
 .header {
     display: flex;
     width: 100vw;
+    height: 8vh;
     align-items: center;
     justify-content: flex-start;
-    /* temporary color */
     background-color: red;
 }
 
@@ -56,7 +69,7 @@ button {
     height: 100%
 }
 
-li:hover {
+button:hover {
     color: black;
     transition: all linear 0.5s;
 }

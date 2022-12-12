@@ -21,16 +21,12 @@ export const userData = defineStore("userData", {
         Posters: this.modalData[0].Posters,
       });
       this.modal = false;
-      console.log(this.modalData[0].Titles);
+      // console.log(this.modalData[0].Titles);
       this.modalData = [];
     },
 
     load(index){
-      console.log(this.data[index].Ids)
-      // this.shop.push({
-      //     Titles: this.data[index].Titles,
-      //     Posters: this.data[index].Posters,
-      // });
+      // console.log(this.data[index].Ids)
       this.id = this.data[index].Ids
   },
 
@@ -43,12 +39,14 @@ export const userData = defineStore("userData", {
           append_to_response: "videos",
         },
       })
-      console.log(response.data);
+    console.log(response.data);
         this.modalData.push({
           Titles: response.data.title,
           Posters: "https://image.tmdb.org/t/p/w500/" + response.data.poster_path,
-          Description: response.data.overview
+          Description: response.data.overview,
+          ReleaseDate: response.data.release_date,
         })
+        // console.log(modalData);
       },
 
     async getMovies() {

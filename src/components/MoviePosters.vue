@@ -3,77 +3,68 @@
 ones you want to purchase */
 import { ref } from "vue"
 import { userData } from "../store/index.js"
-import router from "../router"
+import router from "../router/index.js"
 import Modal from '../components/Modal.vue'
-const posters = ref()
+import Footer from "./Footer.vue";
+
 const store = userData()
 store.getMovies()
-let shoppingCart = () =>{
-    router.push("./cart")
+
+let shoppingCart = () => {
+  if (store.shop[0]) {
+    router.push('/cart')
+    console.log(store.shop[0]);
+  }
+  else {
+    alert("Your shopping cart is empty.")
+  }
 }
+
 let loadModal = (index) => {
-    store.modal = true;
-    store.load(index);
-    store.specificMovie(store.id);
-    posters.className = "modalOpen"
-    console.log(posters);
+  store.modal = true;
+  store.load(index);
+  store.specificMovie(store.id);
 }
-
-
-// let purchase = (index) => {
-//     store.modal = true
-//     console.log(store.data[index].Ids)
-//     store.shop.push({
-//         Titles: store.data[index].Titles,
-//         Posters: store.data[index].Posters,
-//     });
-//     store.specificMovie(store.id);
-//     console.log(store.modalData);
-// }
 
 </script>
 
 <template>
-    <Modal v-if='store.modal' />
-    <div>
-        <button class="cart" @click = "shoppingCart()"></button>
-        <div ref="posters" class="modal">
-            <img v-for="(movieData, index) in store.data" :src="movieData.Posters" :value="movieData.Title"
-                @click="loadModal(index)" />
-        </div>
+  <Modal v-if='store.modal' />
+  <div>
+    <button class="cart" @click="shoppingCart()"></button>
+    <div ref="posters" class="posters">
+      <img v-for="(movieData, index) in store.data" :src="movieData.Posters" :value="movieData.Title"
+        @click="loadModal(index)" />
     </div>
+  </div>
 </template>
 
 <style scoped>
 .cart {
-    background-image: url(../cart-shopping-solid.svg);
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    background-color: gainsboro;
-    left: 94%;
-    bottom: 1%;
+  background-image: url(../cart-shopping-solid.svg);
+  width: 50px;
+  background-color: gainsboro;
+  border: none;
+  height: 50px;
+  position: fixed;
+  left: 94%;
+  top: 10%;
 }
 
-.modalOpen {
-    overflow: hidden;
-}
-
-* ::after ::before {
-    user-select: none;
+.cart:hover {
+  background-color: grey;
+  transition: all 0.2s;
 }
 
 .posters {
-    padding: 0px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 1rem;
 }
 
 img {
-    width: 20%;
-    aspect-ratio: 3/4;
+  width: 100%;
+  aspect-ratio: 3/4;
 }
 </style>

@@ -4,6 +4,8 @@ import Home from "../view/Home.vue";
 import Login from "../view/Login.vue";
 import Shop from "../view/Shop.vue"
 import Cart from "../view/Cart.vue";
+import Checkout from '../view/Checkout.vue'
+
 
 const routes = [
   {
@@ -23,6 +25,10 @@ const routes = [
   {
     path: '/cart',
     component: Cart
+  },
+  {
+    path: '/checkout',
+    component: Checkout
   }
 ];
 

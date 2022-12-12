@@ -1,4 +1,5 @@
 <script setup>
+import Footer from '../components/Footer.vue';
 import Header from '../components/Header.vue'
 import Hero from '../components/Hero.vue'
 </script>
@@ -6,6 +7,7 @@ import Hero from '../components/Hero.vue'
 <template>
   <Header></Header>
   <Hero></Hero>
+  <Footer></Footer>
 </template>
 
 <style>
@@ -21,4 +23,12 @@ import Hero from '../components/Hero.vue'
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 89, 89, 0.411);
 }
+</style>
+
+<style scoped>
+
+*{
+  overflow: hidden;
+}
+
 </style>

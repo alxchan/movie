@@ -1,27 +1,53 @@
 <script setup>
-/* Have the movie poster set value to be equal to the title. That way, the pinia datastore will know which
-ones you want to purchase */
+
 import { ref } from "vue"
+import router from "../router";
 import { userData } from "../store/index.js"
-import router from "../router"
-import Modal from '../components/Modal.vue'
-const posters = ref()
+
 const store = userData()
-let getData = () => {
-    for (data in store.shop) {
-        console.log(data.Titles)
-        console.log(data.Posters);
-    }
+const checkout = () => {
+    router.push("./checkout")
 }
+const remove = (index) => {
+    store.shop.splice(index, index + 1)
+}
+
 </script>
 
 <template>
-    <div class = "movieData" v-for="data in store.shop">
-        <h1>{{ data.Titles }}</h1>
-        <img :src="data.Posters" />
-    </div>
+    <h1 style="text-align: center;">Your Shopping Cart</h1>
+
+    <body>
+        <div class="movieData" v-for=" data, index in store.shop">
+            <h1 style="position: absolute; font-size: 100%; width: 10%; color: green;">{{ data.Titles }}</h1>
+            <img :src="data.Posters" @click="remove(index)" />
+        </div>
+    </body>
+    <button @click=checkout() v-if = "store.shop[0]">CHECKOUT!</button>
 </template>
 
 <style scoped>
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    width: 100vw;
+}
 
+img {
+    aspect-ratio: 3/4;
+    height: 50vh
+}
+
+button {
+    position: relative;
+    margin-top: 3rem;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55vw;
+    height: 10vh;
+}
 </style>
