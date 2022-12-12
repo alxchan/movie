@@ -9,7 +9,8 @@ const checkout = () => {
     router.push("./checkout")
 }
 const remove = (index) => {
-    store.shop.splice(index, index + 1)
+    store.shop.splice(index, 1)
+    console.log(index);
 }
 
 </script>
