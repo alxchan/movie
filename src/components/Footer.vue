@@ -16,24 +16,14 @@
     </div>
     <div class="contact">
       <div class="details">
-        <h1 style="margin-left: 0px; font-size: 20px;">Contact Information</h1>
-        <p>Address Street NY</p>
-        <p>1-123-123-1234</p>
-        <p>Name Name</p>
-      </div>
-      <div class="details">
-        <h1 style="margin: 0px; font-size: 20px;">For General Inquiries</h1>
-        <p>fakeemail@gmail.com</p>
-        <p>1-456-567-8910</p>
-      </div>
-      <div class="details">
-        <h1 style="margin: 0px; font-size: 20px;">For Purchase Inquiries</h1>
-        <p>fakeemail@gmail.com</p>
-        <p>1-456-567-8910</p>
+        <h1 style="margin-left: 0px; font-size: 20px;">About</h1>
+        <li>FAQ</li>
+        <li>Application</li>
+        <li>Documentation</li>
       </div>
     </div>
     <div class="list">
-      <p style="text-align: start; font-size: 20px;">Links:</p>
+      <h1 style="font-size: 20px;">Links:</h1>
       <a href="https://github.com/alxchan">
         <li>Terms</li>
       </a>
@@ -43,35 +33,20 @@
       <a href="https://github.com/alxchan">
         <li>Support</li>
       </a>
-      <a href="https://github.com/alxchan">
-        <li>Careers</li>
-      </a>
 
     </div>
   </div>
 </template>
 
 <style scoped>
-p {
-  margin: 0.5%;
-}
 
-.contact {
+
+.socials{
+  padding: 10%;
   display: flex;
-  flex-basis: 100%;
+  grid-column: 1 / 3;
+  background-color: white;
 }
-
-.details {
-  margin-left: 2.5%;
-  margin-top: 3%
-}
-
-.socials {
-  flex-basis: 90%;
-  padding-bottom: 1%;
-  display: flex;
-}
-
 .email {
   background-image: url(../envelope-solid.svg);
   height: 90%;
@@ -81,7 +56,6 @@ p {
   border: none;
   background-color: transparent;
 }
-
 .youtube {
   align-self: center;
   background-image: url(../youtube.svg);
@@ -92,7 +66,6 @@ p {
   border: none;
   background-color: transparent;
 }
-
 .github {
   align-self: center;
   background-image: url(../github.svg);
@@ -103,7 +76,6 @@ p {
   border: none;
   background-color: transparent;
 }
-
 .twitter {
   align-self: center;
   background-image: url(../twitter.svg);
@@ -114,32 +86,32 @@ p {
   border: none;
   background-color: transparent;
 }
+.footer{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  height: 20vh;
+  width: 100vw;
+}
+
+.list{
+  padding: 10%;
+}
+
+.contact{
+  padding: 10%;
+}
+
+p {
+  margin: 0.5%;
+}
 
 h1 {
   flex-basis: 15%;
   align-self: center;
 }
 
-.footer {
-  display: flex;
-  padding-top: 1vh;
-  width: 100vw;
-  height: 16vh;
-  background-color: red;
-  flex-direction: row;
-}
-
-.list {
-  flex-basis: 20%;
-  font-size: 15px;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  margin-left: 4%;
-  text-align: start;
-}
-
 li {
   margin-top: 5%;
+  list-style: none;
 }
 </style>
