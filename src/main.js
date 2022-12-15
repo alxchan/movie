@@ -58,7 +58,7 @@ pinia.use((context) => {
   }
 
   else if (window.localStorage.getItem(storeId)){
-    window.localStorage.setItem(storeId,true)
+    window.localStorage.setItem(storeId, "")
   }
 
   context.store.$subscribe((mutation, state) => {

@@ -1,9 +1,8 @@
 <script setup>
-import { walkIdentifiers } from "@vue/compiler-core";
 import { ref } from "vue"
 //Firebase sign-in
-// import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-// import { auth } from "../firebase/index.js"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../firebase/index.js"
 import router from "../router";
 import { userData } from "../store/index.js"
 const email = ref("");
@@ -24,20 +23,20 @@ if(store.login){
     }, 10)  
 }
 
-//Firebase sign-in
-// let login = () => {
-//     signInWithEmailAndPassword(auth, email.value, password.value)
-//         .then((userCredential) => {
-//             router.push("./home")
-//             alert("logged in");
-//             const user = userCredential.user;
-//         })
-// }
+// Firebase sign-in
+let toLogin = () => {
+    signInWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+            router.push("./home")
+            alert("logged in");
+            store.login = userCredential.user;
+        })
+}
 
 
-// let register = () => {
-//     router.push("./register")
-// }
+let register = () => {
+    router.push("./register")
+}
 </script>
 
 <template>
@@ -45,7 +44,7 @@ if(store.login){
     <body>
         <div class="color-background">
             <div class="Login">
-                <form @submit.prevent="login()">
+                <form @submit.prevent="toLogin()">
                     <input type="text" placeholder="    Username" v-model="username" class="login-input" />
                     <input type="email" placeholder="    Email" v-model="email" class="login-input" />
                     <input type="password" placeholder="    Password" v-model="password" class="login-input" />

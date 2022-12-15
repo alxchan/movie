@@ -4,7 +4,7 @@ import axios from "axios";
 export const userData = defineStore("userData", {
   state: () => ({
     data: [],
-    login: false,
+    login: "",
     modal: false,
     shop: [],
     id: 0,

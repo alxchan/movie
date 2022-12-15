@@ -60,6 +60,7 @@ button {
     background-color: transparent;
     border: none;
     user-select: none;
+    cursor: pointer;
 }
 
 .list {
@@ -72,5 +73,6 @@ button {
 button:hover {
     color: black;
     transition: all linear 0.5s;
+
 }
 </style>
