@@ -11,7 +11,7 @@ const store = userData()
 store.getMovies()
 
 let shoppingCart = () => {
-  if (store.shop[0]) {
+  if (store.shop) {
     router.push('/cart')
     console.log(store.shop[0]);
   }

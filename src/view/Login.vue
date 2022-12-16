@@ -9,13 +9,13 @@ const email = ref("");
 const username = ref("");
 const password = ref("");
 const store = userData()
-let login = () => {
-    if (username.value == "tmdb" && password.value == "movies") {
-        alert("correct login");
-        router.push("./shop");
-        store.login = true;
-    }
-}
+// let login = () => {
+//     if (username.value == "tmdb" && password.value == "movies") {
+//         alert("correct login");
+//         router.push("./shop");
+//         store.login = true;
+//     }
+// }
 
 if(store.login){
     setTimeout(() => {

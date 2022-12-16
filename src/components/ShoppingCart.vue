@@ -9,7 +9,7 @@ const checkout = () => {
     router.push("./checkout")
 }
 const remove = (index) => {
-    store.shop.splice(index, 1)
+    delete store.shop[index]
     console.log(index);
 }
 
@@ -19,12 +19,12 @@ const remove = (index) => {
     <h1 style="text-align: center;">Your Shopping Cart</h1>
 
     <body>
-        <div class="movieData" v-for=" data, index in store.shop">
-            <h1 style="position: absolute; font-size: 100%; width: 10%; color: green;">{{ data.Titles }}</h1>
-            <img :src="data.Posters" @click="remove(index)" />
+        <div class="movieData" v-for=" data, index of store.shop">
+            <h1 style="position: absolute; font-size: 100%; width: 10%; color: green;">{{ data.Title }}</h1>
+            <img :src="data.Poster" @click="remove(index)" />
         </div>
     </body>
-    <button @click=checkout() v-if = "store.shop[0]">CHECKOUT!</button>
+    <button @click=checkout() v-if = "store.shop">CHECKOUT!</button>
 </template>
 
 <style scoped>

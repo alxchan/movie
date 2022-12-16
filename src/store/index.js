@@ -4,9 +4,9 @@ import axios from "axios";
 export const userData = defineStore("userData", {
   state: () => ({
     data: [],
-    login: "",
+    login: false,
     modal: false,
-    shop: [],
+    shop: {},
     id: 0,
     modalData: [],
   }),
@@ -16,11 +16,18 @@ export const userData = defineStore("userData", {
   },
   actions: {
     purchase(){
-      this.shop.push({
-        Titles: this.modalData[0].Titles,
-        Posters: this.modalData[0].Posters,
-      });
+      console.log(this.modalData[0].Id)
+      if (!this.shop[this.modalData[0].Id]){
+        this.shop[this.modalData[0].Id] = {
+          Poster: this.modalData[0].Posters,
+          Title: this.modalData[0].Titles
+        }
+      }
+      else{
+        alert("You have already added this to your cart!");
+      }
       this.modal = false;
+      console.log(this.shop);
       // console.log(this.modalData[0].Titles);
       this.modalData = [];
     },
@@ -45,6 +52,7 @@ export const userData = defineStore("userData", {
           Posters: "https://image.tmdb.org/t/p/w500/" + response.data.poster_path,
           Description: response.data.overview,
           ReleaseDate: response.data.release_date,
+          Id: response.data.id,
         })
         // console.log(modalData);
       },
