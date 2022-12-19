@@ -11,9 +11,8 @@ const store = userData()
 store.getMovies()
 
 let shoppingCart = () => {
-  if (store.shop) {
+  if (Object.keys(store.shop).length != 0) {
     router.push('/cart')
-    console.log(store.shop[0]);
   }
   else {
     alert("Your shopping cart is empty.")

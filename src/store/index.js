@@ -4,7 +4,7 @@ import axios from "axios";
 export const userData = defineStore("userData", {
   state: () => ({
     data: [],
-    login: false,
+    login: true,
     modal: false,
     shop: {},
     id: 0,
@@ -20,7 +20,8 @@ export const userData = defineStore("userData", {
       if (!this.shop[this.modalData[0].Id]){
         this.shop[this.modalData[0].Id] = {
           Poster: this.modalData[0].Posters,
-          Title: this.modalData[0].Titles
+          Title: this.modalData[0].Titles,
+          Desc: this.modalData[0].Description,
         }
       }
       else{

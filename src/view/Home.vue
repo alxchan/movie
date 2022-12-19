@@ -15,6 +15,10 @@ import Hero from '../components/Hero.vue'
   width: 10px;
 }
 
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}
+
 ::-webkit-scrollbar-thumb {
   background: black;
   box-shadow: inset 0 0 5px red;
@@ -26,9 +30,7 @@ import Hero from '../components/Hero.vue'
 </style>
 
 <style scoped>
-
-*{
+* {
   overflow: hidden;
 }
-
 </style>

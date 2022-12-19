@@ -5,6 +5,7 @@ const store = userData()
 
 let logout = () => {
     store.login = false;
+    store.shop = {};
     router.push("./");
 }
 
