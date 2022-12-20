@@ -14,7 +14,7 @@ const confirmOrder = () => {
 
 const checkout = () => {
     modalv2.value = true;
-    console.log(modalv2);
+    // console.log(modalv2);
 }
 
 let modalv2 = ref(false);
@@ -42,10 +42,10 @@ const remove = (index) => {
         <h1 v-if="Object.keys(store.shop).length != 0" style="text-align: start">Movies You are Purchasing</h1>
         <div class="container">
             <div class="movieData" v-for=" data, index of store.shop">
-                <img class="posters-1" :src="data.Poster" @click="remove(index)" />
+                <img class="posters-1" :src="data.poster" @click="remove(index)" />
                 <div class="text">
-                    <h1>{{ data.Title }}</h1>
-                    <h2>{{ data.Desc }}</h2>
+                    <h1>{{ data.title }}</h1>
+                    <h2>{{ data.desc }}</h2>
                 </div>
             </div>
         </div>
@@ -56,8 +56,8 @@ const remove = (index) => {
                 <div class="styling">
                     <h1 style="padding: 2%;">Movies:</h1>
                     <div class="containers" v-for="data in store.shop">
-                        <img class="posters-2" :src="data.Poster" />
-                        <h1 style="font-size: 20px;">{{ data.Title }}</h1>
+                        <img class="posters-2" :src="data.poster" />
+                        <h1 style="font-size: 20px;">{{ data.title }}</h1>
                     </div>
                 </div>
                 <div class="payment-container" style = "height: --var(--height)">
@@ -86,7 +86,7 @@ const remove = (index) => {
 
 #paypal {
     align-self: center;
-    background-image: url(../paypal.svg);
+    background-image: url(../assets/paypal.svg);
     height: 90%;
     width: 25%;
     background-repeat: no-repeat;
@@ -105,7 +105,7 @@ const remove = (index) => {
 
 #credit {
     align-self: center;
-    background-image: url(/src/credit-card-solid.svg);
+    background-image: url(/src/assets/credit-card-solid.svg);
     height: 90%;
     width: 25%;
     background-repeat: no-repeat;
@@ -143,7 +143,7 @@ const remove = (index) => {
 
 #close {
     position: fixed;
-    background-image: url(../x-solid.svg);
+    background-image: url(../assets/x-solid.svg);
     background-color: transparent;
     border: none;
     background-repeat: no-repeat;
@@ -250,6 +250,5 @@ body {
     background-color: white;
     border-radius: 5%;
     width: 30%;
-    height:var(--height);
 }
 </style>

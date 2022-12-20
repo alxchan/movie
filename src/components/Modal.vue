@@ -1,26 +1,56 @@
 <script setup>
 import { userData } from '../store/index.js'
+import axios from "axios";
+import { ref } from 'vue';
 
 const store = userData()
-console.log(store.modalData)
 let closeModal = () => {
   store.modal = false;
 }
+
+const props = defineProps({
+  id: Number,
+})
+
+const modalData = ref({})
+
+let specificMovie = async () => {
+    modalData.value = {};
+    // console.log(props.id);
+    let response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${props.id}`,{
+        params: {
+          api_key: "dae84c7eae2f2c63d4bdf1e712d56304",
+          append_to_response: "videos",
+        },
+      })
+      // console.log(response.data);
+      modalData.value = {
+        title: response.data.title,
+        poster: "https://image.tmdb.org/t/p/w500/" + response.data.poster_path,
+        description: response.data.overview,
+        releaseDate: response.data.release_date,
+        id: response.data.id,
+      }
+        // console.log(modalData);
+      }
+      
+    await specificMovie();
 
 </script>
 
 <template>
   <div class="background" @click.self="closeModal()">
     <div class="modal">
-      <img :src=store.modalData[0].Posters />
+      <img :src= modalData.poster />
       <div id="flex-styling">
         <div id="text">
           <button id='close' @click="closeModal()"></button>
-          <h1 style="width: 85%; padding-bottom: 10px;">{{ store.modalData[0].Titles }}</h1>
-          <h2 style = "margin: 20px;">Released On: {{ store.modalData[0].ReleaseDate }}</h2>
-          <h2>{{ store.modalData[0].Description }}</h2>
+          <h1 style="width: 85%; padding-bottom: 10px;">{{modalData.title }}</h1>
+          <h2 style = "margin: 20px;">Released On: {{ modalData.releaseDate }}</h2>
+          <h2>{{ modalData.description }}</h2>
         </div>
-        <button class="button" @click="store.purchase()">Purchase</button>
+        <button class="button" @click="store.purchase(modalData)">Purchase</button>
       </div>
     </div>
   </div>
@@ -38,7 +68,7 @@ let closeModal = () => {
 
 #close {
   position: relative;
-  background-image: url(../x-solid.svg);
+  background-image: url(../assets/x-solid.svg);
   background-color: transparent;
   border:none;
   background-repeat: no-repeat;

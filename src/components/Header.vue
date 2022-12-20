@@ -26,7 +26,7 @@ let shop = () => {
 
 <template>
     <div class="header">
-        <img src="../image.png" style="width: 5%;" />
+        <img src="../assets/image.png" style="width: 5%;" />
         <h1>TheBest Movie Co.</h1>
         <div class="list">
             <button @click="home()">Home</button>

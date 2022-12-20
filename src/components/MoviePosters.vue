@@ -1,14 +1,12 @@
 <script setup>
-/* Have the movie poster set value to be equal to the title. That way, the pinia datastore will know which
-ones you want to purchase */
 import { ref } from "vue"
 import { userData } from "../store/index.js"
 import router from "../router/index.js"
 import Modal from '../components/Modal.vue'
-import Footer from "./Footer.vue";
 
 const store = userData()
 store.getMovies()
+let movieId = ref(0);
 
 let shoppingCart = () => {
   if (Object.keys(store.shop).length != 0) {
@@ -21,26 +19,26 @@ let shoppingCart = () => {
 
 let loadModal = (index) => {
   store.modal = true;
-  store.load(index);
-  store.specificMovie(store.id);
+  movieId.value = index
+  // console.log(movieId);
 }
 
 </script>
 
 <template>
-  <Modal v-if='store.modal' />
+  <Modal v-if='store.modal' :id = "movieId"/>
   <div>
     <button class="cart" @click="shoppingCart()"></button>
     <div ref="posters" class="posters">
-      <img v-for="(movieData, index) in store.data" :src="movieData.Posters" :value="movieData.Title"
-        @click="loadModal(index)" />
+      <img v-for="movieData in store.data" :src="movieData.Posters" :value="movieData.Title"
+        @click="loadModal(movieData.Ids)" />
     </div>
   </div>
 </template>
 
 <style scoped>
 .cart {
-  background-image: url(../cart-shopping-solid.svg);
+  background-image: url(../assets/cart-shopping-solid.svg);
   width: 50px;
   background-color: gainsboro;
   border: none;

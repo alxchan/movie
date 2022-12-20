@@ -48,7 +48,7 @@
   background-color: white;
 }
 .email {
-  background-image: url(../envelope-solid.svg);
+  background-image: url(../assets/envelope-solid.svg);
   height: 90%;
   width: 25%;
   padding-left: 10%;
@@ -58,7 +58,7 @@
 }
 .youtube {
   align-self: center;
-  background-image: url(../youtube.svg);
+  background-image: url(../assets/youtube.svg);
   height: 90%;
   width: 25%;
   padding-left: 10%;
@@ -68,7 +68,7 @@
 }
 .github {
   align-self: center;
-  background-image: url(../github.svg);
+  background-image: url(../assets/github.svg);
   height: 90%;
   width: 25%;
   padding-left: 10%;
@@ -78,7 +78,7 @@
 }
 .twitter {
   align-self: center;
-  background-image: url(../twitter.svg);
+  background-image: url(../assets/twitter.svg);
   height: 90%;
   width: 22%;
   padding-left: 10%;

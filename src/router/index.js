@@ -61,7 +61,7 @@ router.beforeEach((to,from,next) => {
     next();
   }
   else{
-    console.log(store.login)
+    // console.log(store.login)
     router.push("./")
     alert("You are not logged in.")
   }
