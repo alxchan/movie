@@ -6,7 +6,6 @@ import Login from "../view/Login.vue";
 import Shop from "../view/Shop.vue"
 import Cart from "../view/Cart.vue";
 import Checkout from '../view/Checkout.vue'
-import Register from '../view/Register.vue'
 
 
 const routes = [
@@ -35,10 +34,6 @@ const routes = [
     }
   },
   {
-    path: '/register',
-    component: Register,
-  },
-  {
     path: '/checkout',
     component: Checkout,
     meta: {
@@ -61,7 +56,6 @@ router.beforeEach((to,from,next) => {
     next();
   }
   else{
-    // console.log(store.login)
     router.push("./")
     alert("You are not logged in.")
   }

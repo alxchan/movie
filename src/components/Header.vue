@@ -3,6 +3,8 @@ import router from "../router";
 import { userData } from '../store/index.js'
 const store = userData()
 
+const emits = defineEmits(['clear'])
+
 let logout = () => {
     store.login = false;
     store.shop = {};
@@ -29,11 +31,11 @@ let shop = () => {
         <img src="../assets/image.png" style="width: 5%;" />
         <h1>TheBest Movie Co.</h1>
         <div class="list">
-            <button @click="home()">Home</button>
-            <button @click="login()" v-if="!store.login">Login</button>
-            <button @click="shop()" v-if="store.login">Shop</button>
+            <button @click="home(), emits('clear')">Home</button>
+            <button @click="login(), emits('clear')" v-if="!store.login">Login</button>
+            <button @click="shop(), emits('clear')" v-if="store.login">Shop</button>
             <button>Contact</button>
-            <button @click="logout()" v-if="store.login">Logout</button>
+            <button @click="logout(), emits('clear')" v-if="store.login">Logout</button>
         </div>
     </div>
 </template>

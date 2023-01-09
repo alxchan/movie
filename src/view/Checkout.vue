@@ -3,14 +3,21 @@ import Header from '../components/Header.vue'
 import ShoppingCart from '../components/ShoppingCart.vue';
 import { userData } from '../store/index.js'
 
+console.log(window.location.pathname)
+
 const store = userData();
+const clear = () => {
+  if(window.location.pathname == '/checkout'){
+    store.shop = {};
+  }
+}
 
 // console.log(store.shop);
 
 </script>
 
 <template>
-  <Header></Header>
+  <Header @clear = clear()  ></Header>
 <div style = "margin: 1rem;">
   <h1>You have sucessfully purchased the following movies:</h1>
   <h1 v-for="data of store.shop" style = "margin: 2rem" >{{data.title}}</h1>

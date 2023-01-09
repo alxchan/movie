@@ -1,38 +1,29 @@
 <script setup>
 import { ref } from "vue"
-//Firebase sign-in
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../firebase/index.js"
 import router from "../router";
 import { userData } from "../store/index.js"
 const email = ref("");
 const username = ref("");
 const password = ref("");
 const store = userData()
+const error = ref(false)
 let login = () => {
+    error.value = false
     if (username.value == "tmdb" && password.value == "movies") {
         alert("correct login");
         router.push("./shop");
         store.login = true;
     }
+    else{
+        error.value = true;
+    }
 }
 
-if(store.login){
+if (store.login) {
     setTimeout(() => {
         router.push("./shop")
-    }, 10)  
+    }, 10)
 }
-
-// Firebase sign-in
-// let toLogin = () => {
-//     signInWithEmailAndPassword(auth, email.value, password.value)
-//         .then((userCredential) => {
-//             router.push("./home")
-//             alert("logged in");
-//             store.login = userCredential.user;
-//         })
-// }
-
 
 let register = () => {
     router.push("./register")
@@ -48,6 +39,7 @@ let register = () => {
                     <input type="text" placeholder="    Username" v-model="username" class="login-input" />
                     <input type="email" placeholder="    Email" v-model="email" class="login-input" />
                     <input type="password" placeholder="    Password" v-model="password" class="login-input" />
+                    <p id="login" v-if = error>Login Info Is Incorrect!</p>
                     <input type="submit" value="Login" class="submitLog" />
                 </form>
                 <p id="login">Don't Have an Account?</p>

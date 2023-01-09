@@ -64,4 +64,8 @@ img {
   width: 100%;
   aspect-ratio: 3/4;
 }
+
+img:hover {
+  box-shadow: 0px 0px 0px 5px red
+}
 </style>
